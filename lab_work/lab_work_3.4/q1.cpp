@@ -1,79 +1,167 @@
+
 #include <iostream>
+#include <vector>
 using namespace std;
+
 
 class Student
 {
+
 private:
-    string name;
-    int rollNumber;
-    float gpa;
+
+    string stu_name;
+
+    int stu_roll;
+
+    float stu_GPA;  
 
 public:
- 
     Student()
     {
-        name = "";
-        rollNumber = 0;
-        gpa = 0.0;
-    }
+        stu_name = "name";
 
+        stu_roll = 0;
+
+        stu_GPA = 0.0;
+
+    }
 
     Student(string n, int r, float g)
     {
-        name = n;
-        rollNumber = r;
-        gpa = g;
+
+
+        stu_name = n;
+
+        stu_roll = r;
+
+        stu_GPA = g;
+
     }
 
     Student(const Student &s)
     {
-        name = s.name;
-        rollNumber = s.rollNumber;
-        gpa = s.gpa;
+
+        stu_name = s.stu_name;
+
+        stu_roll = s.stu_roll;
+
+        stu_GPA = s.stu_GPA;
     }
 
-   
-    string getName()
+    string GetName() const
     {
-        return name;
+        return stu_name;
+    };
+
+    int GetRoll() const
+    {
+        return stu_roll;
+    };
+
+    float GetGPA() const
+    {
+        return stu_GPA;
     }
 
-    int getRollNumber()
+    void Display()
     {
-        return rollNumber;
+
+        cout << "\nName    :" << stu_name;
+
+        cout << "\nRoll No :" << stu_roll;
+
+        cout << "\nGPA     :" << stu_GPA;
+
     }
 
-    float getGPA()
+    ~Student()
     {
-        return gpa;
+
+        cout << "\ncalled object destroyed\n"
+             << endl;
+    }
+};
+
+class StudentManager
+{
+
+private:
+    vector<Student> Students;
+
+public:
+    void addStudent(const Student &obj)
+    {
+
+        Students.push_back(obj);
+
+        cout << "Student add" << endl;
+
     }
 
-  
-    void display()
+    void DisplayStudent()
     {
-        cout << "\nStudent Details:";
-        cout << "\nName: " << name;
-        cout << "\nRoll Number: " << rollNumber;
-        cout << "\nGPA: " << gpa << endl;
+
+        if (Students.empty())
+        {
+            cout << "No Student" << endl;
+
+        }
+
+        else
+        {
+            for (int i = 0; i < Students.size(); i++)
+            {
+                Students[i].Display();
+
+            }
+        }
+    }
+
+    void SearchRoll(int stu_roll)
+    {
+
+        for (int i = 0; i < Students.size(); i++)
+        {
+            if (Students[i].GetRoll() == stu_roll)
+            {
+                cout << "Student found" << endl;
+
+                Students[i].Display();
+
+
+                return;
+            }
+        }
+
+        cout << "Student not found roll no" << endl;
     }
 };
 
 int main()
 {
-   
-    Student s1;
-    cout << "\nDefault Constructor:";
-    s1.display();
+
+    Student s1("gohil", 1, 10.10);
 
 
-    Student s2("gohil", 101, 8.5);
-    cout << "\nParameterized Constructor:";
-    s2.display();
+    Student s2("gnandipsinh", 2, 34.12);
 
-   
-    Student s3(s2);
-    cout << "\nCopy Constructor:";
-    s3.display();
+
+    StudentManager Admin;
+
+
+    Admin.addStudent(s1);
+
+
+    Admin.addStudent(s2);
+
+
+    cout << "Student all data" << endl;
+
+    Admin.DisplayStudent();
+
+    cout << "finding  roll no " << endl;
+
+    Admin.SearchRoll(2);
 
     return 0;
 }
