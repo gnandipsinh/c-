@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <iostream>
 using namespace std;
 
@@ -44,4 +45,52 @@ int main() {
     obj.toKelvin();
 
     return 0;
+=======
+#include <iostream>
+using namespace std;
+
+// Base Class
+class g {
+protected:
+    float celsius;
+};
+
+
+class h : public g {
+protected:
+    float fahrenheit;
+
+public:
+    void setCelsius() {
+        cout << "Enter temperature in Celsius: ";
+        cin >> celsius;
+    }
+
+    void toFahrenheit() {
+        fahrenheit = (celsius * 9/5) + 32;
+        cout << "Fahrenheit = " << fahrenheit << endl;
+    }
+};
+
+
+class i : public h {
+public:
+    void toKelvin() {
+        float kelvin = (fahrenheit - 32) * 5/9 + 273.15;
+        cout << "Kelvin = " << kelvin << endl;
+    }
+};
+
+
+int main() {
+    i obj;
+
+    obj.setCelsius();
+
+    obj.toFahrenheit();
+
+    obj.toKelvin();
+
+    return 0;
+>>>>>>> 93ea32a37ee51989794f2dd25e9fa21f4d53d698
 }

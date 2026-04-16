@@ -24,7 +24,9 @@ class D : public B, public C
 int main()
 {
     D obj;
+
     obj.B::show();
+    
     obj.C::show();
     return 0;
 }
