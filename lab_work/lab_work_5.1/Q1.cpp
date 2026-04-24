@@ -4,38 +4,47 @@ using namespace std;
 class Calculator
 {
 public:
+    virtual void showInfo()
+    {
+        cout << "This is a basic calculator" << endl;
+    }
+};
+
+class AdvancedCalculator : public Calculator
+{
+public:
     void calculate(int a, int b)
     {
-        cout << "Division = " << (float)a / b << endl;
+       
+        cout << "Division Result: " << a / b << endl;
     }
 
     void calculate(int a, int b, int c)
     {
-        cout << "Subtraction = " << (a - b - c) << endl;
+        cout << "Subtraction Result: " << a - b - c << endl;
     }
 
     void calculate(int a, int b, int c, int d)
     {
-        cout << "Multiplication = " << (a * b * c * d) << endl;
+        cout << "Multiplication Result: " << a * b * c * d << endl;
     }
 
     void calculate(int a, int b, int c, int d, int e)
     {
-        cout << "Addition = " << (a + b + c + d + e) << endl;
+        cout << "Addition Result: " << a + b + c + d + e << endl;
     }
 };
 
 int main()
 {
-    Calculator obj;
+    AdvancedCalculator obj;
 
-    obj.calculate(10, 2);
+    obj.showInfo();
 
-    obj.calculate(20, 5, 3);
-
-    obj.calculate(2, 3, 4, 5);
-    
-    obj.calculate(1, 2, 3, 4, 5);
+    obj.calculate(50, 20);
+    obj.calculate(50, 12, 13);
+    obj.calculate(10, 10, 10, 10);
+    obj.calculate(10, 10, 10, 10, 10);
 
     return 0;
 }
